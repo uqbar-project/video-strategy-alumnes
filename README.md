@@ -1,6 +1,8 @@
 
 # Ejercicio Alumnes - Strategy
 
+[![build](https://github.com/uqbar-project/video-strategy-alumnes/actions/workflows/build.yml/badge.svg)](https://github.com/uqbar-project/video-strategy-alumnes/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/uqbar-project/video-strategy-alumnes/branch/master/graph/badge.svg?token=9cBieKRuiM)](https://codecov.io/gh/uqbar-project/video-strategy-alumnes) 
+
 Ejercicio base para el video que explica el patrón Strategy mediante el ejemplo de alumnes.
 
 ## Dominio
