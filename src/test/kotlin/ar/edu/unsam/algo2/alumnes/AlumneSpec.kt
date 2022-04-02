@@ -4,7 +4,7 @@ import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
-class CobroSiniestroSpec : DescribeSpec({
+class AlumneSpec : DescribeSpec({
     isolationMode = IsolationMode.InstancePerTest
     describe("Test alumnes") {
         describe("Dada una persona estudiosa") {

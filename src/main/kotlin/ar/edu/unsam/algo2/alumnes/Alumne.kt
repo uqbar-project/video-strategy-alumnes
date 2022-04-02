@@ -1,28 +1,35 @@
 package ar.edu.unsam.algo2.alumnes
 
 class Alumne {
-    var criterioEstudio: Int = 1
+    var criterioEstudio: CriterioEstudio = CriterioEstudiosa
     val notas: MutableList<Int> = mutableListOf()
 
-    fun criterioEstudiosa() { criterioEstudio = 1 }
-    fun criterioVaga() { criterioEstudio = 2 }
-    fun criterioHijaDelRigor() { criterioEstudio = 3 }
+    fun criterioEstudiosa() { criterioEstudio = CriterioEstudiosa }
+    fun criterioVaga() { criterioEstudio = CriterioVaga }
+    fun criterioHijaDelRigor() { criterioEstudio = CriterioHijaRigor() }
 
     fun rindioParcial(nota: Int) { notas.add(nota) }
-    fun estudiaPara(parcial: Parcial) =
-        when (criterioEstudio) {
-            // ESTUDIOSA
-            1 -> true
+    fun estudiaPara(parcial: Parcial) = criterioEstudio.estudiaPara(parcial, this)
 
-            // VAGA
-            2 -> notas.last() < 6
-
-            // HIJA DEL RIGOR
-            3 -> parcial.cantidadPreguntas > 5
-
-            else -> false
-        }
-
+    fun desaproboUltimoExamen() = notas.last() < 6
 }
 
-data class Parcial(val cantidadPreguntas: Int = 10)
+interface CriterioEstudio {
+    fun estudiaPara(parcial: Parcial, alumne: Alumne): Boolean
+}
+
+object CriterioEstudiosa : CriterioEstudio {
+    override fun estudiaPara(parcial: Parcial, alumne: Alumne) = true
+}
+
+object CriterioVaga : CriterioEstudio {
+    override fun estudiaPara(parcial: Parcial, alumne: Alumne) = alumne.desaproboUltimoExamen()
+}
+
+class CriterioHijaRigor : CriterioEstudio {
+    override fun estudiaPara(parcial: Parcial, alumne: Alumne) = parcial.esDificil()
+}
+
+data class Parcial(val cantidadPreguntas: Int = 10) {
+    fun esDificil() = cantidadPreguntas > 5
+}
